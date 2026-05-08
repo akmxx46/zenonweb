@@ -67,28 +67,7 @@ const scripts: Script[] = [
     reviews: 56,
     description: "Script kelola grup WA otomatis",
     isNew: true,
-  },
-  {
-    id: 5,
-    name: "Script Order System",
-    badge: "SCRIPT",
-    badgeColor: "bg-violet-500",
-    price: 12000,
-    rating: 5.0,
-    reviews: 78,
-    description: "Script sistem order toko online",
-  },
-  {
-    id: 6,
-    name: "Script Custom",
-    badge: "CUSTOM",
-    badgeColor: "bg-orange-500",
-    price: 25000,
-    rating: 5.0,
-    reviews: 34,
-    description: "Script custom sesuai kebutuhan",
-    isNew: true,
-  },
+  }
 ];
 
 const pricingPlans = [
