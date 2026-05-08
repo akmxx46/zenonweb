@@ -121,21 +121,31 @@ function formatPrice(price: number): string {
 function ScriptCard({ script }: { script: Script }) {
   return (
     <div className="bg-zinc-900/90 border border-zinc-700/80 rounded-xl overflow-hidden hover:border-teal-400/60 transition-all hover:-translate-y-1 group">
-      <div className="relative aspect-[4/3] bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center">
-        <Code className="w-10 h-10 sm:w-12 sm:h-12 text-teal-400/40" />
-        <div className="absolute top-2 left-2 flex gap-1">
-          {script.isNew && (
-            <span className="bg-rose-500 text-white text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded">
-              BARU
-            </span>
-          )}
-        </div>
-        <div className="absolute top-2 right-2">
-          <span className={`${script.badgeColor} text-white text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded`}>
-            {script.badge}
-          </span>
-        </div>
-      </div>
+      <div className="relative aspect-[4/3] bg-zinc-800 overflow-hidden">
+  {/* Menampilkan Gambar Produk */}
+  <img 
+    src={script.image || "/placeholder-script.jpg"} 
+    alt={script.name}
+    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-90 group-hover:opacity-100"
+  />
+  
+  {/* Overlay gradasi agar tampilan lebih mewah */}
+  <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/50 to-transparent" />
+
+  <div className="absolute top-2 left-2 flex gap-1">
+    {script.isNew && (
+      <span className="bg-rose-500 text-white text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded shadow-sm">
+        BARU
+      </span>
+    )}
+  </div>
+  <div className="absolute top-2 right-2">
+    <span className={`${script.badgeColor} text-white text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 rounded shadow-sm`}>
+      {script.badge}
+    </span>
+  </div>
+</div>
+
       <div className="p-3 sm:p-4">
         <h3 className="font-semibold text-white text-xs sm:text-sm mb-1 group-hover:text-teal-400 transition-colors line-clamp-1">
           {script.name}
