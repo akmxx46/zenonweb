@@ -132,8 +132,12 @@ function PanelPricing() {
 
           return (
             <Link
-              key={index}
-              href={`/checkout?type=panel&ram=${plan.ram}&price=${plan.price}`}
+  key={index}
+  target="_blank"
+href={`https://wa.me/6281234567890?text=Halo%20Zenon%20JPM,%20saya%20mau%20order%20Panel%20WhatsApp%20dengan%20RAM%20${plan.ram}%20seharga%20${formatPrice(plan.price)}`} 
+  className="..."
+>
+
               className={`relative bg-zinc-900/90 border rounded-xl p-3 sm:p-4 text-center transition-all hover:-translate-y-1 hover:shadow-lg block ${
                 plan.highlight
                   ? "border-teal-400 ring-2 ring-teal-400/30 hover:shadow-teal-500/20"
