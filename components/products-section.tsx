@@ -35,38 +35,6 @@ const scripts: Script[] = [
     reviews: 64,
     image: "/images/zenon-sc.jpg",
     description: "Script JPM fitur lumayan banyak",
-  },
-  {
-    id: 2,
-    name: "Script Broadcast",
-    badge: "SCRIPT",
-    badgeColor: "bg-violet-500",
-    price: 7500,
-    rating: 5.0,
-    reviews: 89,
-    description: "Script broadcast massal tanpa batas",
-    isNew: true,
-  },
-  {
-    id: 3,
-    name: "Script CS Otomatis",
-    badge: "SCRIPT",
-    badgeColor: "bg-violet-500",
-    price: 10000,
-    rating: 5.0,
-    reviews: 42,
-    description: "Script customer service 24/7",
-  },
-  {
-    id: 4,
-    name: "Script Grup Manager",
-    badge: "SCRIPT",
-    badgeColor: "bg-violet-500",
-    price: 8000,
-    rating: 5.0,
-    reviews: 56,
-    description: "Script kelola grup WA otomatis",
-    isNew: true,
   }
 ];
 
