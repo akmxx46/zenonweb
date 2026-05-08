@@ -27,13 +27,13 @@ const categories = [
 const scripts: Script[] = [
   {
     id: 1,
-    name: "Script Auto Reply",
+    name: "Script Zenon JPM",
     badge: "SCRIPT",
     badgeColor: "bg-violet-500",
     price: 5000,
     rating: 5.0,
     reviews: 64,
-    description: "Script auto reply premium untuk bisnis",
+    description: "Script JPM fitur lumayan banyak",
   },
   {
     id: 2,
