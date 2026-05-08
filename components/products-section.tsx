@@ -131,22 +131,21 @@ function PanelPricing() {
         {pricingPlans.map((plan, index) => {
           const Icon = plan.icon;
 
-          return (
-            <Link
-  key={index}
-  target="_blank"
-href={`https://wa.me/6281234567890?text=Halo%20Zenon%20JPM,%20saya%20mau%20order%20Panel%20WhatsApp%20dengan%20RAM%20${plan.ram}%20seharga%20${formatPrice(plan.price)}`} 
-  className="..."
->
+  const waLink = `https://wa.me/6281234567890?text=Halo%20Zenon%20JPM,%20saya%20mau%20order%20Panel%20WhatsApp%20dengan%20RAM%20${plan.ram}%20seharga%20${formatPrice(plan.price)}`;
 
-              className={`relative bg-zinc-900/90 border rounded-xl p-3 sm:p-4 text-center transition-all hover:-translate-y-1 hover:shadow-lg block ${
-                plan.highlight
-                  ? "border-teal-400 ring-2 ring-teal-400/30 hover:shadow-teal-500/20"
-                  : plan.isUnlimited
-                    ? "border-amber-400 ring-2 ring-amber-400/30 col-span-2 xs:col-span-1 hover:shadow-amber-500/20"
-                    : "border-zinc-700/80 hover:border-teal-400/50"
-              }`}
-            >
+  return (
+    <Link
+      key={index}
+      target="_blank"
+      href={waLink}
+      className={`relative bg-zinc-900/90 border rounded-xl p-3 sm:p-4 text-center transition-all hover:-translate-y-1 hover:shadow-lg block ${
+        plan.highlight
+          ? "border-teal-400 ring-2 ring-teal-400/30 hover:shadow-teal-500/20"
+          : plan.isUnlimited
+            ? "border-amber-400 ring-2 ring-amber-400/30 col-span-2 xs:col-span-1 hover:shadow-amber-500/20"
+            : "border-zinc-700/80 hover:border-teal-400/50"
+      }`}
+    >
               {plan.label && (
                 <div className="absolute -top-2.5 sm:-top-3 left-1/2 -translate-x-1/2">
                   <span
