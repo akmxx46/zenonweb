@@ -3,7 +3,7 @@
 import { MessageCircle, Zap, Shield, Users } from "lucide-react";
 import Link from "next/link";
 
-const WHATSAPP_NUMBER = "6281234567890";
+const WHATSAPP_NUMBER = "6285701961876";
 
 export function HeroSection() {
   return (
@@ -19,7 +19,7 @@ export function HeroSection() {
             {/* Badge */}
             <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-teal-400/15 border border-teal-400/40 rounded-full px-3 sm:px-4 py-1 sm:py-1.5 text-xs sm:text-sm text-teal-400 mb-4 sm:mb-5 font-medium">
               <Zap className="w-3 h-3 sm:w-4 sm:h-4" />
-              Terpercaya & Terlaris
+              Aman & Terpercaya 
             </div>
 
             {/* Title */}
