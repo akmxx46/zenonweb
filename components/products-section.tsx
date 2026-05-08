@@ -33,7 +33,7 @@ const scripts: Script[] = [
     price: 5000,
     rating: 5.0,
     reviews: 64,
-    image: "/images/zenon-sc.png",
+    image: "/images/zenon-sc.jpg",
     description: "Script JPM fitur lumayan banyak",
   },
   {
