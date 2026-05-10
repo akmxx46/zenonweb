@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 
 const WHATSAPP_NUMBER = "6285701961876";
-// GANTI DENGAN LINK GAMBAR QRIS KAMU (Bisa taruh di folder public/images/qris.jpg)
 const QRIS_IMAGE_URL = "/images/qristano.png"; 
 
 function formatPrice(price: number): string {
@@ -39,6 +38,16 @@ function CheckoutContent() {
   const productType = searchParams.get("type") || "panel";
   const productName = searchParams.get("name") || "";
   const productPrice = parseInt(searchParams.get("price") || "0");
+
+  // FUNGSI DOWNLOAD (Ditaruh di sini supaya tidak eror)
+  const handleDownloadQris = () => {
+    const link = document.createElement("a");
+    link.href = QRIS_IMAGE_URL;
+    link.download = "QRIS-ZenonStore.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   const handleShowQris = () => {
     if (!customerName || !customerPhone) {
@@ -85,7 +94,6 @@ function CheckoutContent() {
           <p className="text-zinc-400 text-sm">Scan QRIS dan Konfirmasi</p>
         </div>
 
-        {/* Ringkasan Pesanan */}
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5 mb-6">
           <div className="flex justify-between items-center">
             <div>
@@ -96,7 +104,6 @@ function CheckoutContent() {
           </div>
         </div>
 
-        {/* Form Data */}
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5 mb-6 space-y-4">
           <h2 className="text-xs font-bold text-zinc-500 uppercase tracking-widest">Data Pembeli</h2>
           <input
@@ -127,7 +134,6 @@ function CheckoutContent() {
           )}
         </div>
 
-        {/* Tombol Bayar */}
         <button
           onClick={handleShowQris}
           className="w-full py-4 rounded-xl font-bold bg-teal-500 text-black shadow-lg shadow-teal-500/20 hover:bg-teal-400 transition-all"
@@ -135,7 +141,6 @@ function CheckoutContent() {
           Bayar Sekarang
         </button>
 
-        {/* MODAL QRIS */}
         {showQrisModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
             <div className="bg-zinc-900 border border-zinc-800 w-full max-w-sm rounded-2xl overflow-hidden relative animate-in fade-in zoom-in duration-300">
@@ -147,36 +152,34 @@ function CheckoutContent() {
               </button>
               
               <div className="p-6 text-center">
-                <h3 className="text-lg font-bold mb-1">Scan QRIS</h3>
+                <h3 className="text-lg font-bold mb-1 text-white">Scan QRIS</h3>
                 <p className="text-zinc-400 text-xs mb-4">Silakan selesaikan pembayaran</p>
                 
-                <div className="bg-white p-3 rounded-xl mb-4 inline-block">
-                   {/* GAMBAR QRIS ANDA */}
+                <div className="bg-white p-3 rounded-xl mb-3 inline-block shadow-lg">
                   <img src={QRIS_IMAGE_URL} alt="QRIS ZenonStore" className="w-48 h-48 sm:w-64 sm:h-64 object-contain" />
                 </div>
+
+                {/* TOMBOL UNDUH */}
+                <button
+                  onClick={handleDownloadQris}
+                  className="flex items-center gap-2 mx-auto mb-5 text-teal-400 hover:text-teal-300 text-xs font-semibold transition-colors bg-teal-400/10 px-4 py-2 rounded-full border border-teal-400/20"
+                >
+                  <Download className="w-4 h-4" />
+                  Simpan QRIS ke Galeri
+                </button>
                 
-            const handleDownloadQris = () => {
-  const link = document.createElement("a");
-  link.href = QRIS_IMAGE_URL;
-  link.download = "QRIS-ZenonStore.jpg"; // Nama file saat diunduh
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-};
-
-
                 <div className="bg-zinc-800 p-3 rounded-lg mb-6">
-                  <p className="text-zinc-500 text-[10px] uppercase">Total Tagihan</p>
-                  <p className="text-teal-400 text-xl font-black">{formatPrice(productPrice)}</p>
+                  <p className="text-zinc-500 text-[10px] uppercase font-bold tracking-wider">Total Tagihan</p>
+                  <p className="text-teal-400 text-2xl font-black">{formatPrice(productPrice)}</p>
                 </div>
 
                 <button
                   onClick={handleConfirmWhatsApp}
-                  className="w-full py-3 rounded-xl font-bold bg-green-500 hover:bg-green-600 text-white flex items-center justify-center gap-2"
+                  className="w-full py-4 rounded-xl font-bold bg-green-500 hover:bg-green-600 text-white flex items-center justify-center gap-2 shadow-lg shadow-green-500/20"
                 >
                   Sudah Bayar? Kirim Bukti
                 </button>
-                <p className="text-[10px] text-zinc-500 mt-3 italic">*Lampirkan SS bukti transfer saat di WhatsApp</p>
+                <p className="text-[10px] text-zinc-500 mt-3 italic">*Lampirkan bukti transfer di WhatsApp</p>
               </div>
             </div>
           </div>
