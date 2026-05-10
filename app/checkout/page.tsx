@@ -17,7 +17,7 @@ import {
 
 const WHATSAPP_NUMBER = "6285701961876";
 // GANTI DENGAN LINK GAMBAR QRIS KAMU (Bisa taruh di folder public/images/qris.jpg)
-const QRIS_IMAGE_URL = "/images/qristano.jpg"; 
+const QRIS_IMAGE_URL = "/images/qristano.png"; 
 
 function formatPrice(price: number): string {
   return new Intl.NumberFormat("id-ID", {
