@@ -155,6 +155,16 @@ function CheckoutContent() {
                   <img src={QRIS_IMAGE_URL} alt="QRIS ZenonStore" className="w-48 h-48 sm:w-64 sm:h-64 object-contain" />
                 </div>
                 
+            const handleDownloadQris = () => {
+  const link = document.createElement("a");
+  link.href = QRIS_IMAGE_URL;
+  link.download = "QRIS-ZenonStore.jpg"; // Nama file saat diunduh
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
+
                 <div className="bg-zinc-800 p-3 rounded-lg mb-6">
                   <p className="text-zinc-500 text-[10px] uppercase">Total Tagihan</p>
                   <p className="text-teal-400 text-xl font-black">{formatPrice(productPrice)}</p>
