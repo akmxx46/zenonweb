@@ -2,71 +2,76 @@
 
 import { MessageCircle } from "lucide-react";
 import { motion, useAnimation, PanInfo } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 
 const WHATSAPP_NUMBER = "6285701961876";
 
 export function FloatingWhatsApp() {
   const controls = useAnimation();
-  const containerRef = useRef<HTMLAnchorElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
 
-  // Fungsi saat jari/kursor melepas tombol
+  // Pastikan window sudah tersedia (Client Side)
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const handleDragEnd = (_: any, info: PanInfo) => {
-    // 1. Ambil ukuran layar saat ini
     const width = window.innerWidth;
-    
-    // 2. Ambil posisi X terakhir tombol (info.point.x)
+    // info.point.x adalah posisi kursor di layar saat dilepas
     const endX = info.point.x;
 
-    // Jarak aman dari pinggir layar (misal 20px)
+    // Jarak aman dari pinggir layar
     const edgeOffset = 20;
-    const buttonWidth = 48; // w-12 = 48px
+    const buttonWidth = 48; 
 
     let targetX = 0;
 
-    // 3. Logika Snap: Tentukan pinggir terdekat (Kiri atau Kanan)
+    // Logika Snap ke pinggir terdekat
     if (endX > width / 2) {
-      // Jika di kanan layar, lompat ke kanan
-      // (Position fixed kita pakai right-5, jadi targetX ke 0 biar balik ke right-5 asli)
-      targetX = 0; 
+      // Kembali ke posisi kanan asli (right-5)
+      targetX = 0;
     } else {
-      // Jika di kiri layar, lompat ke kiri
-      // Kita hitung jaraknya: -(LebarLayar - OffsetKananAsli - LebarTombol - OffsetKiri)
-      targetX = -(width - edgeOffset - buttonWidth - edgeOffset); 
+      // Lompat ke sisi kiri layar
+      targetX = -(width - (edgeOffset * 2) - buttonWidth);
     }
 
-    // 4. Jalankan animasi lompat (Spring agar halus)
     controls.start({
       x: targetX,
       transition: { 
         type: "spring", 
-        stiffness: 200, // Kekencangan per
-        damping: 20      // Kelembutan per
+        stiffness: 250, 
+        damping: 25 
       },
     });
   };
 
+  // Cegah error "window is not defined" saat build
+  if (!isMounted) return null;
+
   return (
     <motion.a
-      ref={containerRef}
       href={`https://wa.me/${WHATSAPP_NUMBER}?text=Halo, saya mau tanya tentang produk`}
       target="_blank"
       rel="noopener noreferrer"
       
-      // FITUR DRAG
+      // KONFIGURASI DRAG
       drag
-      dragElastic={0} // 0 biar nempel total di jari (nggak membal)
-      dragMomentum={false} // Matikan momentum biar nggak selip
-      animate={controls} // Hubungkan dengan controls animasi snap
-      onDragEnd={handleDragEnd} // Panggil fungsi snap saat dilepas
+      dragSnapToOrigin={false} 
+      dragElastic={0} // 0 supaya nempel banget di jari
+      dragMomentum={false} // Supaya tidak meluncur sendiri saat dilepas
+      animate={controls}
+      onDragEnd={handleDragEnd}
       
-      // Batas seret agar tidak hilang keluar layar (secara vertikal)
-      dragConstraints={{ top: -window.innerHeight + 100, bottom: 0 }} 
+      // Batasi area geser vertikal agar tidak keluar layar
+      dragConstraints={{
+        top: -window.innerHeight + 100,
+        bottom: 50,
+        left: -window.innerWidth + 100,
+        right: 50
+      }}
 
-      whileDrag={{ scale: 1.1, cursor: "grabbing" }}
-      
-      // POSISI AWAL (Fixed di kanan bawah)
-      className="fixed bottom-5 right-5 z-50 w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl cursor-grab active:cursor-grabbing"
+      whileDrag={{ scale: 1.1 }}
+      className="fixed bottom-5 right-5 z-50 w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center shadow-2xl cursor-grab active:cursor-grabbing touch-none"
     >
       <MessageCircle className="w-6 h-6 text-white" />
       <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30 pointer-events-none" />
