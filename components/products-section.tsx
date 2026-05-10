@@ -150,7 +150,7 @@ function PanelPricing() {
           // MENGARAHKAN KE CHECKOUT (Sama seperti Script & App)
           // Kita buat ID unik untuk panel, misal: panel-1gb, panel-2gb, dst.
           const planId = `panel-${plan.ram.toLowerCase()}`;
-          const checkoutUrl = `/checkout?type=panel&id=${planId}&name=${encodeURIComponent(`Panel WhatsApp RAM ${plan.ram}`)}&price=${plan.price}`;
+          const checkoutUrl = `/checkout?type=panel&id=${planId}&name=${encodeURIComponent(`RAM ${plan.ram}`)}&price=${plan.price}`;
 
           return (
             <Link
