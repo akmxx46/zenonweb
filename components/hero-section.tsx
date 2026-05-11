@@ -2,7 +2,7 @@
 
 import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { ChevronRight, MessageCircle, Server, Code, Smartphone, Zap } from "lucide-react";
+import { ChevronRight, MessageCircle, Zap, Shield, Users, Rocket } from "lucide-react";
 import Link from "next/link";
 
 const SLIDES = [
@@ -29,10 +29,10 @@ export function HeroSection() {
     <section className="pt-16 pb-6 px-3 sm:px-6 bg-zinc-950">
       <div className="max-w-6xl mx-auto">
         
-        {/* --- BANNER AREA (YANG DIUBAH) --- */}
-        <div className="relative rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900/40 shadow-2xl p-4 sm:p-6 mb-6">
+        {/* --- CONTAINER BANNER UTAMA --- */}
+        <div className="relative rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900/40 shadow-2xl p-4 sm:p-6 mb-4">
           
-          {/* SLIDER UTAMA */}
+          {/* SLIDER AREA */}
           <div className="overflow-hidden mb-6" ref={emblaRef}>
             <div className="flex">
               {SLIDES.map((slide, index) => (
@@ -41,14 +41,14 @@ export function HeroSection() {
                   <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/80 to-transparent z-1" />
 
                   <div className="relative z-10 w-full">
-                    <div className="inline-flex items-center gap-2 bg-zinc-800/80 border border-zinc-700 px-3 py-1 rounded-lg mb-3">
+                    <div className="inline-flex items-center gap-2 bg-zinc-800/80 border border-zinc-700 px-3 py-1 rounded-lg mb-4">
                       <div className="w-1.5 h-1.5 bg-teal-500 rounded-full animate-pulse" />
                       <span className="text-[9px] text-zinc-300 font-black uppercase tracking-widest italic">{slide.category}</span>
                     </div>
                     <h1 className="text-3xl sm:text-5xl font-black text-white mb-2 italic tracking-tighter uppercase leading-none">
                       {slide.title}
                     </h1>
-                    <p className="text-zinc-400 text-[11px] sm:text-sm mb-6 max-w-sm line-clamp-2">{slide.desc}</p>
+                    <p className="text-zinc-400 text-[11px] sm:text-sm mb-8 max-w-sm line-clamp-2">{slide.desc}</p>
                     <div className="flex gap-3">
                       <Link href={slide.target} className="bg-teal-500 hover:bg-teal-400 text-black px-6 py-2.5 rounded-xl font-black text-[11px] uppercase flex items-center gap-2 transition-all">
                         BELI SEKARANG <ChevronRight className="w-4 h-4" />
@@ -63,7 +63,7 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* --- 4 KOTAK PRODUK DI DALAM BANNER (YANG LU MAU) --- */}
+          {/* --- 4 KOTAK STATS & PROMO (SESUAI GAMBAR KANAN LU) --- */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2 relative z-20">
             {/* Kotak Promo */}
             <div className="bg-gradient-to-br from-teal-500/20 to-zinc-900 border border-teal-500/30 rounded-2xl p-3 flex flex-col justify-center">
@@ -76,26 +76,26 @@ export function HeroSection() {
               </p>
             </div>
 
-            {/* Kotak Cloud Panel */}
-            <Link href="#panel" className="bg-zinc-800/40 border border-zinc-700/50 rounded-2xl p-3 flex flex-col items-center justify-center text-center group hover:border-teal-500/50 transition-all">
-              <Server className="w-5 h-5 text-teal-400 mb-1 group-hover:scale-110 transition-transform" />
-              <div className="text-[11px] font-black text-white uppercase italic leading-none">Cloud Panel</div>
-              <div className="text-[8px] text-zinc-500 font-bold uppercase mt-1">Mulai Rp1.000</div>
-            </Link>
+            {/* Kotak Pengguna */}
+            <div className="bg-zinc-800/40 border border-zinc-700/50 rounded-2xl p-3 flex flex-col items-center justify-center text-center">
+              <Users className="w-5 h-5 text-teal-400 mb-1" />
+              <div className="text-sm sm:text-lg font-black text-white italic">5000+</div>
+              <div className="text-[9px] text-zinc-500 font-bold uppercase tracking-tighter mt-1">Pengguna</div>
+            </div>
 
-            {/* Kotak Script Bot */}
-            <Link href="#script" className="bg-zinc-800/40 border border-zinc-700/50 rounded-2xl p-3 flex flex-col items-center justify-center text-center group hover:border-teal-500/50 transition-all">
-              <Code className="w-5 h-5 text-teal-400 mb-1 group-hover:scale-110 transition-transform" />
-              <div className="text-[11px] font-black text-white uppercase italic leading-none">Script Bot</div>
-              <div className="text-[8px] text-zinc-500 font-bold uppercase mt-1">Best Features</div>
-            </Link>
+            {/* Kotak Uptime */}
+            <div className="bg-zinc-800/40 border border-zinc-700/50 rounded-2xl p-3 flex flex-col items-center justify-center text-center">
+              <Zap className="w-5 h-5 text-teal-400 mb-1" />
+              <div className="text-sm sm:text-lg font-black text-white italic">99.9%</div>
+              <div className="text-[9px] text-zinc-500 font-bold uppercase tracking-tighter mt-1">Uptime</div>
+            </div>
 
-            {/* Kotak Premium App */}
-            <Link href="#app" className="bg-zinc-800/40 border border-zinc-700/50 rounded-2xl p-3 flex flex-col items-center justify-center text-center group hover:border-teal-500/50 transition-all">
-              <Smartphone className="w-5 h-5 text-teal-400 mb-1 group-hover:scale-110 transition-transform" />
-              <div className="text-[11px] font-black text-white uppercase italic leading-none">Premium App</div>
-              <div className="text-[8px] text-zinc-500 font-bold uppercase mt-1">Trusted App</div>
-            </Link>
+            {/* Kotak Support */}
+            <div className="bg-zinc-800/40 border border-zinc-700/50 rounded-2xl p-3 flex flex-col items-center justify-center text-center">
+              <Shield className="w-5 h-5 text-teal-400 mb-1" />
+              <div className="text-sm sm:text-lg font-black text-white italic">24/7</div>
+              <div className="text-[9px] text-zinc-500 font-bold uppercase tracking-tighter mt-1">Support</div>
+            </div>
           </div>
         </div>
 
