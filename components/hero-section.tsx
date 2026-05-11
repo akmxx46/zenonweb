@@ -92,12 +92,15 @@ export function HeroSection() {
                       {slide.desc}
                     </p>
                     
-                    {/* 4. Tombol (delay-1000) */}
-                    <div className={`transition-all duration-700 delay-1000 ${selectedIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                      <Link href={slide.target} className="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-black px-5 py-2.5 rounded-xl font-black text-[11px] uppercase transition-all shadow-lg active:scale-95">
-                        LIHAT <ChevronRight className="w-4 h-4" />
-                      </Link>
-                    </div>
+                    {/* --- 4. Tombol (Ukurannya Lebih Slim & Pas) --- */}
+<div className={`transition-all duration-700 delay-1000 ${selectedIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+  <Link 
+    href={slide.target} 
+    className="inline-flex items-center gap-1.5 bg-teal-500 hover:bg-teal-400 text-black px-4 py-2 rounded-lg font-black text-[10px] uppercase transition-all shadow-lg active:scale-95"
+  >
+    LIHAT <ChevronRight className="w-3.5 h-3.5" />
+  </Link>
+</div>
                   </div>
                 </div>
               ))}
