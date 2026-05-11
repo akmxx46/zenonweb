@@ -31,11 +31,7 @@ const SLIDES = [
 
 export function HeroSection() {
   const [selectedIndex, setSelectedIndex] = useState(0);
-  
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
-    loop: true, 
-    duration: 45 
-  });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 45 });
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -50,11 +46,7 @@ export function HeroSection() {
     if (!emblaApi) return;
     onSelect();
     emblaApi.on("select", onSelect);
-    
-    const intervalId = setInterval(() => {
-      emblaApi.scrollNext();
-    }, 5000);
-
+    const intervalId = setInterval(() => emblaApi.scrollNext(), 5000);
     return () => {
       clearInterval(intervalId);
       emblaApi.off("select", onSelect);
@@ -65,8 +57,8 @@ export function HeroSection() {
     <section className="pt-20 pb-4 px-3 sm:px-6 bg-zinc-950">
       <div className="max-w-6xl mx-auto">
         
-        {/* --- BANNER AREA --- */}
-        <div className="relative rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-xl mb-3">
+        {/* --- FIX: HAPUS bg-zinc-900 DAN border BIAR GAK BELANG --- */}
+        <div className="relative rounded-2xl overflow-hidden mb-3"> 
           <div className="overflow-hidden touch-pan-y cursor-grab active:cursor-grabbing" ref={emblaRef}>
             <div className="flex">
               {SLIDES.map((slide, index) => (
@@ -74,14 +66,13 @@ export function HeroSection() {
                   className="flex-[0_0_100%] min-w-0 relative h-[260px] sm:h-[350px] flex items-center p-6 sm:p-12" 
                   key={index}
                 >
-                  {/* FOTO BERSIH (TANPA ZOOM) */}
                   <img 
                     src={slide.bg} 
                     className="absolute inset-0 w-full h-full object-cover z-0 scale-100" 
                     alt="" 
                   />
                   
-                  {/* FIX: GRADIENT DIHAPUS, DIGANTI OVERLAY RATA TIPIS BIAR GAK ADA BAGIAN GELAP */}
+                  {/* Overlay dibuat tipis merata */}
                   <div className="absolute inset-0 bg-black/30 z-1" />
 
                   <div className="relative z-10 w-full">
@@ -111,7 +102,7 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* --- PAGINATION DOTS (BERSIH & KECIL) --- */}
+          {/* --- PAGINATION DOTS --- */}
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-20">
             {SLIDES.map((_, index) => (
               <button
@@ -137,6 +128,7 @@ export function HeroSection() {
 
         {/* --- STATS AREA --- */}
         <div className="grid grid-cols-3 gap-2">
+           {/* Kotak-kotak bawah tetap sama */}
            <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-xl py-3 text-center flex flex-col items-center justify-center min-h-[75px]">
             <Users className="w-5 h-5 text-teal-500 mb-1" />
             <div className="text-base sm:text-2xl font-black text-white leading-none italic">5000+</div>
