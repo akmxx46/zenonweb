@@ -10,14 +10,14 @@ const SLIDES = [
     category: "PANEL PTERODACTYL",
     title: <>HOSTING <span className="text-teal-400">PREMIUM</span></>,
     desc: "Panel performa tinggi untuk bot & game server.",
-    bg: "/images/hero-1.jpg",
+    bg: "/images/zenon-sc.jpg",
     target: "#panel"
   },
   {
     category: "SCRIPT BOT WA",
     title: <>BOT <span className="text-teal-400">OTOMATIS</span></>,
     desc: "Script bot WhatsApp fitur terlengkap 24 jam.",
-    bg: "/images/hero-2.jpg",
+    bg: "/images/zenon-sc.jpg",
     target: "#script"
   },
   {
