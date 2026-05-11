@@ -9,7 +9,7 @@ const SLIDES = [
   {
     category: "PANEL PTERODACTYL",
     title: <>HOSTING <span className="text-teal-400">PREMIUM</span></>,
-    desc: "Panel performa tinggi untuk bot & game server tanpa delay. Layanan kami menjamin uptime maksimal dengan harga yang sangat terjangkau untuk semua kalangan gamer.",
+    desc: "Panel performa tinggi untuk bot & game server tanpa delay.",
     bg: "/images/zenon-sc.jpg",
     target: "#panel"
   },
