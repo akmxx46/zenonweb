@@ -8,21 +8,21 @@ import Link from "next/link";
 const SLIDES = [
   {
     category: "PANEL PTERODACTYL",
-    title: <>HOSTING <span className="text-teal-400 drop-shadow-[0_2px_10px_rgba(20,184,166,0.3)]">PREMIUM</span></>,
+    title: <>HOSTING <span className="text-teal-400">PREMIUM</span></>,
     desc: "Panel performa tinggi untuk bot & game server.",
-    bg: "/images/zenon-sc.jpg",
+    bg: "/images/hero-1.jpg",
     target: "#panel"
   },
   {
     category: "SCRIPT BOT WA",
-    title: <>BOT <span className="text-teal-400 drop-shadow-[0_2px_10px_rgba(20,184,166,0.3)]">OTOMATIS</span></>,
+    title: <>BOT <span className="text-teal-400">OTOMATIS</span></>,
     desc: "Script bot WhatsApp fitur terlengkap 24 jam.",
-    bg: "/images/qristano.png",
+    bg: "/images/hero-2.jpg",
     target: "#script"
   },
   {
     category: "MOBILE APP",
-    title: <>APP <span className="text-teal-400 drop-shadow-[0_2px_10px_rgba(20,184,166,0.3)]">PREMIUM</span></>,
+    title: <>APP <span className="text-teal-400">PREMIUM</span></>,
     desc: "Aplikasi Android & iOS premium untukmu.",
     bg: "/images/hero-3.jpg",
     target: "#app"
@@ -30,66 +30,60 @@ const SLIDES = [
 ];
 
 export function HeroSection() {
-  // Pakai embla dasar tanpa plugin tambahan biar gak eror build
+  // Pakai embla dasar biar anti eror build
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
 
-  // Fungsi buat geser otomatis pakai logic manual
+  // Fungsi geser otomatis manual (Safe logic)
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
   useEffect(() => {
-    const intervalId = setInterval(scrollNext, 5000); // Geser tiap 5 detik (sedikit lebih lambat)
+    const intervalId = setInterval(scrollNext, 5000); 
     return () => clearInterval(intervalId);
   }, [scrollNext]);
 
   return (
-    <section className="pt-20 sm:pt-24 pb-4 px-3 sm:px-6 bg-zinc-950">
+    <section className="pt-20 pb-4 px-3 sm:px-6 bg-zinc-950">
       <div className="max-w-6xl mx-auto">
         
-        {/* --- BANNER AREA (Gambar Terang, Teks Jelas) --- */}
-        <div className="relative rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-[0_0_30px_rgba(20,184,166,0.03)] mb-3">
+        {/* --- 1. SLIDER AREA (GAMBAR CERAH) --- */}
+        <div className="relative rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-xl mb-3" ref={emblaRef}>
           
-          {/* Cahaya Pemanis halus di pojok */}
-          <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/5 rounded-full blur-[90px] z-0" />
+          {/* Cahaya Pemanis */}
+          <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-[80px] z-0" />
           
-          <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
+          <div className="overflow-hidden cursor-grab active:cursor-grabbing">
             <div className="flex">
               {SLIDES.map((slide, index) => (
-                <div className="flex-[0_0_100%] min-w-0 relative h-[250px] sm:h-[320px] flex items-center p-6 sm:p-12" key={index}>
+                <div className="flex-[0_0_100%] min-w-0 relative h-[230px] sm:h-[320px] flex items-center p-6 sm:p-12" key={index}>
                   
-                  {/* Gambar Latar Belakang (Lebih Terang - Opacity 80%) */}
+                  {/* Gambar (Opacity 80% biar cerah) */}
                   <img src={slide.bg} className="absolute inset-0 w-full h-full object-cover opacity-80 z-0" alt="" />
                   
-                  {/* Overlay Hitam Tipis Merata agar teks terbaca */}
-                  <div className="absolute inset-0 bg-black/20 z-1" />
-                  
-                  {/* Gradien Halus dari Bawah agar tombol menonjol */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-1" />
+                  {/* Overlay agar teks tetap kebaca */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent z-1" />
 
                   <div className="relative z-10 w-full">
                     {/* Badge */}
-                    <div className="inline-flex items-center gap-1.5 bg-teal-500/10 border border-teal-500/20 rounded-md px-2.5 py-0.5 mb-2.5 shadow-sm">
-                      <Zap className="w-3.5 h-3.5 text-teal-400 fill-teal-400 animate-pulse shadow-[0_0_5px_#14b8a6]" />
+                    <div className="inline-flex items-center gap-1.5 bg-teal-500/10 border border-teal-500/30 rounded-md px-2 py-0.5 mb-2.5 shadow-sm">
+                      <Zap className="w-3 h-3 text-teal-400 fill-teal-400 shadow-[0_0_5px_#14b8a6]" />
                       <span className="text-[9px] text-teal-400 font-bold uppercase tracking-widest italic">{slide.category}</span>
                     </div>
                     
-                    {/* Judul dengan Drop Shadow Kuat agar menonjol */}
-                    <h1 className="text-3xl sm:text-5xl font-extrabold text-white mb-2 italic tracking-tighter uppercase leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)] sm:drop-shadow-[0_2px_15px_rgba(0,0,0,0.8)]">
+                    <h1 className="text-3xl sm:text-5xl font-black text-white mb-2 italic tracking-tighter uppercase leading-tight drop-shadow-lg">
                       {slide.title}
                     </h1>
                     
-                    {/* Deskripsi dengan Drop Shadow Halus */}
-                    <p className="text-zinc-200 text-xs sm:text-base mb-6 max-w-[280px] sm:max-w-md line-clamp-2 italic font-medium drop-shadow-[0_1px_5px_rgba(0,0,0,0.6)]">
+                    <p className="text-zinc-200 text-[11px] sm:text-base mb-6 max-w-[280px] sm:max-w-md line-clamp-1 italic font-medium drop-shadow-md">
                       {slide.desc}
                     </p>
                     
-                    {/* Tombol */}
-                    <div className="flex gap-3">
-                      <Link href={slide.target} className="bg-teal-500 hover:bg-teal-400 text-black px-6 py-2.5 rounded-lg font-black text-xs uppercase flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(20,184,166,0.3)] active:scale-95">
+                    <div className="flex gap-2">
+                      <Link href={slide.target} className="bg-teal-500 hover:bg-teal-400 text-black px-5 py-2 rounded-lg font-black text-[11px] uppercase flex items-center gap-1.5 transition-all shadow-lg shadow-teal-500/20 active:scale-95">
                         BELI <ChevronRight className="w-4 h-4" />
                       </Link>
-                      <a href="https://wa.me/6285701961876" className="bg-zinc-800/80 border border-zinc-700 hover:bg-zinc-700 text-white px-6 py-2.5 rounded-lg font-bold text-xs flex items-center gap-2 transition-all">
+                      <a href="https://wa.me/6285701961876" className="bg-zinc-800/80 border border-zinc-700 text-white px-5 py-2 rounded-lg font-bold text-[11px] flex items-center gap-1.5 transition-all">
                         <MessageCircle className="w-4 h-4" /> CHAT
                       </a>
                     </div>
@@ -100,15 +94,28 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* --- 3 KOTAK STATS --- */}
+        {/* --- 2. STATS AREA (3 KOTAK LENGKAP) --- */}
         <div className="grid grid-cols-3 gap-2">
-          {/* ... (bagian ini tetap sama, saya hapus untuk mempersingkat output) ... */}
-          <div className="bg-zinc-900/70 border border-zinc-800 rounded-xl py-3 text-center flex flex-col items-center justify-center min-h-[80px] shadow-inner hover:border-teal-500/20 transition-all">
-            <Users className="w-5 h-5 text-teal-500 mb-1" />
-            <div className="text-lg sm:text-2xl font-extrabold text-white leading-none italic">5000+</div>
-            <div className="text-[10px] text-zinc-500 font-bold uppercase tracking-tighter mt-1">Pengguna</div>
+          {/* Kotak Pengguna */}
+          <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-xl py-3 text-center flex flex-col items-center justify-center min-h-[75px]">
+            <Users className="w-4 h-4 text-teal-500 mb-1" />
+            <div className="text-base sm:text-2xl font-black text-white leading-none italic">5000+</div>
+            <div className="text-[8px] sm:text-[10px] text-zinc-500 font-bold uppercase tracking-tighter mt-1">Pengguna</div>
           </div>
-          {/* ... */}
+
+          {/* Kotak Uptime */}
+          <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-xl py-3 text-center flex flex-col items-center justify-center min-h-[75px]">
+            <Zap className="w-4 h-4 text-teal-400 mb-1" />
+            <div className="text-base sm:text-2xl font-black text-white leading-none italic">99.9%</div>
+            <div className="text-[8px] sm:text-[10px] text-zinc-500 font-bold uppercase tracking-tighter mt-1">Uptime</div>
+          </div>
+
+          {/* Kotak Support */}
+          <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-xl py-3 text-center flex flex-col items-center justify-center min-h-[75px]">
+            <Shield className="w-4 h-4 text-teal-300 mb-1" />
+            <div className="text-base sm:text-2xl font-black text-white leading-none italic">24/7</div>
+            <div className="text-[8px] sm:text-[10px] text-zinc-500 font-bold uppercase tracking-tighter mt-1">Support</div>
+          </div>
         </div>
 
       </div>
