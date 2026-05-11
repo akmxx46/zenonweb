@@ -9,14 +9,14 @@ const SLIDES = [
   {
     category: "PANEL PTERODACTYL",
     title: <>HOSTING <span className="text-teal-400">PREMIUM</span></>,
-    desc: "Panel performa tinggi untuk bot & game server tanpa delay.",
+    desc: "Panel performa tinggi untuk bot & game server.",
     bg: "/images/hero-1.jpg",
     target: "#panel"
   },
   {
     category: "SCRIPT BOT WA",
     title: <>BOT <span className="text-teal-400">OTOMATIS</span></>,
-    desc: "Script bot WhatsApp fitur terlengkap & anti delay 24 jam.",
+    desc: "Script bot WhatsApp fitur terlengkap 24 jam.",
     bg: "/images/hero-2.jpg",
     target: "#script"
   }
@@ -26,32 +26,34 @@ export function HeroSection() {
   const [emblaRef] = useEmblaCarousel({ loop: true });
 
   return (
-    <section className="pt-16 pb-6 px-3 sm:px-6 bg-zinc-950">
+    <section className="pt-16 pb-4 px-3 sm:px-6 bg-zinc-950">
       <div className="max-w-6xl mx-auto">
         
-        {/* --- 1. SLIDER AREA (DIPISAH) --- */}
-        <div className="relative rounded-3xl overflow-hidden border border-zinc-800 bg-zinc-900/40 shadow-2xl mb-4" ref={emblaRef}>
+        {/* --- 1. SLIDER AREA (TINGGI DIKECILIN) --- */}
+        <div className="relative rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/40 shadow-xl mb-3" ref={emblaRef}>
           <div className="flex">
             {SLIDES.map((slide, index) => (
-              <div className="flex-[0_0_100%] min-w-0 relative h-[280px] sm:h-[350px] flex items-center p-6 sm:p-12" key={index}>
+              <div className="flex-[0_0_100%] min-w-0 relative h-[220px] sm:h-[300px] flex items-center p-5 sm:p-10" key={index}>
                 <img src={slide.bg} className="absolute inset-0 w-full h-full object-cover opacity-20" alt="" />
-                <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/80 to-transparent z-1" />
+                <div className="absolute inset-0 bg-gradient-to-r from-zinc-950 via-zinc-950/70 to-transparent z-1" />
 
                 <div className="relative z-10 w-full">
-                  <div className="inline-flex items-center gap-2 bg-zinc-800/80 border border-zinc-700 px-3 py-1 rounded-lg mb-4">
-                    <div className="w-1.5 h-1.5 bg-teal-500 rounded-full animate-pulse" />
-                    <span className="text-[9px] text-zinc-300 font-black uppercase tracking-widest italic">{slide.category}</span>
+                  <div className="inline-flex items-center gap-1.5 bg-zinc-800/80 border border-zinc-700 px-2 py-0.5 rounded-md mb-2">
+                    <div className="w-1 h-1 bg-teal-500 rounded-full animate-pulse" />
+                    <span className="text-[8px] text-zinc-400 font-black uppercase tracking-widest italic">{slide.category}</span>
                   </div>
-                  <h1 className="text-3xl sm:text-5xl font-black text-white mb-2 italic tracking-tighter uppercase leading-none">
+                  <h1 className="text-2xl sm:text-4xl font-black text-white mb-1.5 italic tracking-tighter uppercase leading-none">
                     {slide.title}
                   </h1>
-                  <p className="text-zinc-400 text-[11px] sm:text-sm mb-8 max-w-sm line-clamp-2">{slide.desc}</p>
-                  <div className="flex gap-3">
-                    <Link href={slide.target} className="bg-teal-500 hover:bg-teal-400 text-black px-6 py-2.5 rounded-xl font-black text-[11px] uppercase flex items-center gap-2 transition-all shadow-lg shadow-teal-500/20">
-                      BELI SEKARANG <ChevronRight className="w-4 h-4" />
+                  <p className="text-zinc-400 text-[10px] sm:text-sm mb-5 max-w-[250px] sm:max-w-sm line-clamp-1 italic">
+                    {slide.desc}
+                  </p>
+                  <div className="flex gap-2">
+                    <Link href={slide.target} className="bg-teal-500 hover:bg-teal-400 text-black px-4 py-2 rounded-lg font-black text-[10px] uppercase flex items-center gap-1.5 transition-all">
+                      BELI <ChevronRight className="w-3.5 h-3.5" />
                     </Link>
-                    <a href="https://wa.me/6285701961876" className="bg-zinc-800/50 border border-zinc-700 text-white px-6 py-2.5 rounded-xl font-bold text-[11px] flex items-center gap-2 transition-all">
-                      <MessageCircle className="w-4 h-4" /> CHAT
+                    <a href="https://wa.me/6285701961876" className="bg-zinc-800/50 border border-zinc-700 text-white px-4 py-2 rounded-lg font-bold text-[10px] flex items-center gap-1.5 transition-all">
+                      <MessageCircle className="w-3.5 h-3.5" /> CHAT
                     </a>
                   </div>
                 </div>
@@ -60,27 +62,27 @@ export function HeroSection() {
           </div>
         </div>
 
-        {/* --- 2. STATS AREA (3 KOTAK TERPISAH) --- */}
-        <div className="grid grid-cols-3 gap-2 sm:gap-4">
+        {/* --- 2. STATS AREA (3 KOTAK LEBIH RAPET) --- */}
+        <div className="grid grid-cols-3 gap-2">
           {/* Kotak Pengguna */}
-          <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl p-3 sm:p-5 text-center flex flex-col items-center justify-center min-h-[90px] sm:min-h-[120px]">
-            <Users className="w-5 h-5 text-teal-400 mb-1 sm:mb-2" />
-            <div className="text-base sm:text-2xl font-black text-white leading-none italic">5000+</div>
-            <div className="text-[9px] sm:text-[11px] text-zinc-500 font-bold uppercase tracking-tighter mt-1">Pengguna</div>
+          <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-xl py-2.5 text-center flex flex-col items-center justify-center min-h-[70px]">
+            <Users className="w-4 h-4 text-teal-400 mb-0.5" />
+            <div className="text-sm sm:text-xl font-black text-white leading-none italic">5000+</div>
+            <div className="text-[8px] text-zinc-500 font-bold uppercase tracking-tighter">Pengguna</div>
           </div>
 
           {/* Kotak Uptime */}
-          <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl p-3 sm:p-5 text-center flex flex-col items-center justify-center min-h-[90px] sm:min-h-[120px]">
-            <Zap className="w-5 h-5 text-teal-400 mb-1 sm:mb-2" />
-            <div className="text-base sm:text-2xl font-black text-white leading-none italic">99.9%</div>
-            <div className="text-[9px] sm:text-[11px] text-zinc-500 font-bold uppercase tracking-tighter mt-1">Uptime</div>
+          <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-xl py-2.5 text-center flex flex-col items-center justify-center min-h-[70px]">
+            <Zap className="w-4 h-4 text-teal-400 mb-0.5" />
+            <div className="text-sm sm:text-xl font-black text-white leading-none italic">99.9%</div>
+            <div className="text-[8px] text-zinc-500 font-bold uppercase tracking-tighter">Uptime</div>
           </div>
 
           {/* Kotak Support */}
-          <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-2xl p-3 sm:p-5 text-center flex flex-col items-center justify-center min-h-[90px] sm:min-h-[120px]">
-            <Shield className="w-5 h-5 text-teal-400 mb-1 sm:mb-2" />
-            <div className="text-base sm:text-2xl font-black text-white leading-none italic">24/7</div>
-            <div className="text-[9px] sm:text-[11px] text-zinc-500 font-bold uppercase tracking-tighter mt-1">Support</div>
+          <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-xl py-2.5 text-center flex flex-col items-center justify-center min-h-[70px]">
+            <Shield className="w-4 h-4 text-teal-400 mb-0.5" />
+            <div className="text-sm sm:text-xl font-black text-white leading-none italic">24/7</div>
+            <div className="text-[8px] text-zinc-500 font-bold uppercase tracking-tighter">Support</div>
           </div>
         </div>
 
