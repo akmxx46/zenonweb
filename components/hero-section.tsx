@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronRight, Zap, Shield, Users } from "lucide-react";
 import Link from "next/link";
@@ -10,56 +10,61 @@ const SLIDES = [
     category: "PANEL PTERODACTYL",
     title: <>HOSTING <span className="text-teal-400">PREMIUM</span></>,
     desc: "Panel performa tinggi untuk bot & game server tanpa delay.",
-    bg: "/images/zenon-sc.jpg", // Sudah diganti
+    bg: "/images/zenon-sc.jpg",
     target: "#panel"
   },
   {
     category: "SCRIPT BOT WA",
     title: <>BOT <span className="text-teal-400">OTOMATIS</span></>,
     desc: "Script bot WhatsApp fitur terlengkap 24 jam.",
-    bg: "/images/zenon-sc.jpg", // Sudah diganti
+    bg: "/images/zenon-sc.jpg",
     target: "#script"
   },
   {
     category: "MOBILE APP",
     title: <>APP <span className="text-teal-400">PREMIUM</span></>,
     desc: "Aplikasi Android & iOS premium untukmu.",
-    bg: "/images/zenon-sc.jpg", // Sudah diganti
+    bg: "/images/zenon-sc.jpg",
     target: "#app"
   }
 ];
 
 export function HeroSection() {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
-    loop: true,
-    duration: 30,
-  });
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 30 });
 
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext();
+  // Update index titik saat slide berubah
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
   }, [emblaApi]);
 
   useEffect(() => {
     if (!emblaApi) return;
-    const intervalId = setInterval(scrollNext, 5000);
-    return () => clearInterval(intervalId);
-  }, [emblaApi, scrollNext]);
+    onSelect();
+    emblaApi.on("select", onSelect);
+    
+    const intervalId = setInterval(() => {
+      emblaApi.scrollNext();
+    }, 5000);
+
+    return () => {
+      clearInterval(intervalId);
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi, onSelect]);
 
   return (
     <section className="pt-20 pb-4 px-3 sm:px-6 bg-zinc-950">
       <div className="max-w-6xl mx-auto">
         
-        {/* --- 1. SLIDER AREA --- */}
+        {/* --- BANNER AREA --- */}
         <div className="relative rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 shadow-xl mb-3">
           <div className="overflow-hidden touch-pan-y cursor-grab active:cursor-grabbing" ref={emblaRef}>
             <div className="flex">
               {SLIDES.map((slide, index) => (
                 <div className="flex-[0_0_100%] min-w-0 relative h-[230px] sm:h-[320px] flex items-center p-6 sm:p-12" key={index}>
-                  
-                  {/* Gambar Terang (Opacity 90%) */}
                   <img src={slide.bg} className="absolute inset-0 w-full h-full object-cover opacity-90 z-0" alt="" />
-                  
-                  {/* Overlay Tipis */}
                   <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent z-1" />
 
                   <div className="relative z-10 w-full">
@@ -67,32 +72,37 @@ export function HeroSection() {
                       <Zap className="w-3 h-3 text-teal-400 fill-teal-400 shadow-[0_0_5px_#14b8a6]" />
                       <span className="text-[9px] text-teal-400 font-bold uppercase tracking-widest italic">{slide.category}</span>
                     </div>
-                    
-                    {/* Judul Kecil & Minimalis */}
                     <h1 className="text-2xl sm:text-4xl font-black text-white mb-2 italic tracking-tighter uppercase leading-tight drop-shadow-md">
                       {slide.title}
                     </h1>
-                    
-                    <p className="text-zinc-200 text-[10px] sm:text-sm mb-6 max-w-[250px] sm:max-w-sm line-clamp-1 italic font-light">
+                    <p className="text-zinc-200 text-[10px] sm:text-sm mb-6 max-w-[250px] line-clamp-1 italic font-light">
                       {slide.desc}
                     </p>
-                    
-                    <div className="flex gap-2">
-                      <Link 
-                        href={slide.target} 
-                        className="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-black px-5 py-2.5 rounded-xl font-black text-[11px] uppercase transition-all shadow-lg active:scale-95"
-                      >
-                        LIHAT <ChevronRight className="w-4 h-4" />
-                      </Link>
-                    </div>
+                    <Link href={slide.target} className="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-black px-5 py-2.5 rounded-xl font-black text-[11px] uppercase transition-all shadow-lg active:scale-95">
+                      LIHAT <ChevronRight className="w-4 h-4" />
+                    </Link>
                   </div>
                 </div>
               ))}
             </div>
           </div>
+
+          {/* --- PAGINATION DOTS (Bulat-bulat) --- */}
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+            {SLIDES.map((_, index) => (
+              <div
+                key={index}
+                className={`transition-all duration-300 rounded-full ${
+                  selectedIndex === index 
+                    ? "w-6 h-1.5 bg-teal-500 shadow-[0_0_8px_#14b8a6]" 
+                    : "w-1.5 h-1.5 bg-white/30"
+                }`}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* --- 2. STATS AREA (3 KOTAK LENGKAP) --- */}
+        {/* --- STATS AREA --- */}
         <div className="grid grid-cols-3 gap-2">
           <div className="bg-zinc-900/60 border border-zinc-800/80 rounded-xl py-3 text-center flex flex-col items-center justify-center min-h-[75px]">
             <Users className="w-5 h-5 text-teal-500 mb-1" />
