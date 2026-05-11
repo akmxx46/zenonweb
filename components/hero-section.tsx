@@ -81,13 +81,13 @@ export function HeroSection() {
                     alt="" 
                   />
                   
-                  {/* OVERLAY YANG RATA - TIDAK ADA BAGIAN TERLALU TERANG */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/70 to-black/60 z-1" />
+                  {/* OVERLAY SOLID - SELURUH AREA GELAP MERATA */}
+                  <div className="absolute inset-0 bg-black/70 z-1" />
                   
-                  {/* OVERLAY TAMBAHAN DARI BAWAH AGAR TEKS SELALU TERBACA */}
-                  <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/50 to-transparent z-1" />
+                  {/* GRADIENT SOFT DARI KIRI UNTUK TRANSISI HALUS */}
+                  <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-black/40 to-transparent z-1" />
 
-                  <div className="relative z-10 w-full">
+                  <div className="relative z-10 w-full max-w-md">
                     {/* Badge */}
                     <div className={`transition-all duration-700 delay-300 ${selectedIndex === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                       <div className="inline-flex items-center gap-1.5 bg-teal-500/20 border border-teal-500/30 rounded-md px-2 py-0.5 mb-2.5">
