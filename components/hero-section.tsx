@@ -10,7 +10,7 @@ const SLIDES = [
     category: "PANEL PTERODACTYL",
     title: <>HOSTING <span className="text-teal-400">PREMIUM</span></>,
     desc: "Panel performa tinggi untuk bot & game server.",
-    bg: "/images/hero-1.jpg",
+    bg: "/images/zenon-sc.jpg",
     target: "#panel"
   },
   {
