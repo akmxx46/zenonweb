@@ -57,21 +57,21 @@ const apps: Script[] = [
 ];
 
 const pricingPlans = [
-  { ram: "1GB", price: 1000, label: null },
-  { ram: "2GB", price: 2000, label: null },
-  { ram: "3GB", price: 3000, label: "Starter", icon: Zap },
-  { ram: "4GB", price: 4000, label: null },
-  { ram: "5GB", price: 5000, label: "Popular", icon: Star, highlight: true },
-  { ram: "6GB", price: 6000, label: null },
-  { ram: "7GB", price: 7000, label: "Best Value", icon: Crown },
-  { ram: "8GB", price: 8000, label: null },
-  { ram: "9GB", price: 9000, label: null },
-  { ram: "10GB", price: 10000, label: null },
-  { ram: "Unlimited", price: 12000, label: "Ultimate", icon: Crown, isUnlimited: true },
+  { ram: "1GB", price: 2000, label: null },
+  { ram: "2GB", price: 3000, label: null },
+  { ram: "3GB", price: 4000, label: "Starter", icon: Zap },
+  { ram: "4GB", price: 5000, label: null },
+  { ram: "5GB", price: 6.500, label: "Popular", icon: Star, highlight: true },
+  { ram: "6GB", price: 7.500, label: null },
+  { ram: "7GB", price: 8.500, label: "Best Value", icon: Crown },
+  { ram: "8GB", price: 9.500, label: null },
+  { ram: "9GB", price: 10.500, label: null },
+  { ram: "10GB", price: 12000, label: null },
+  { ram: "Unlimited", price: 15000, label: "Ultimate", icon: Crown, isUnlimited: true },
 ];
 
 const panelFeatures = [
-  "Cpu stabil",
+  "CPU stabil",
   "VPS legal & stabil",
   "Server fast & anti delay",
   "Uptime 24/7",
