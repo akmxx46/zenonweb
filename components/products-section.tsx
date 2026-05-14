@@ -39,7 +39,7 @@ const scripts: Script[] = [
     image: "/images/zenon-sc.jpg", 
     description: "Script JPM fitur lumayan banyak",
     isNew: true,
-    features: ["Auto Push Kontak", "Anti Delay", "Support Group/Privat"], // Isi fiturnya di sini
+    features: ["SWGC", "Automation", "Push kontak","All fitur work","No enc"],
   }
 ];
 
@@ -55,7 +55,7 @@ const apps: Script[] = [
     image: "/images/alightmotion.jpg",
     description: "Akun alight motion pro 1 tahun.",
     isNew: true,
-    features: ["Aktif 1 Tahun", "No Watermark", "Full Preset"], // Isi detail app di sini
+    features: ["Aktif 1 Tahun", "No Watermark", "Bisa pakai semua Preset", "Bergaransi"],
   }
 ];
 
