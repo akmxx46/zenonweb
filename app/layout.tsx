@@ -1,27 +1,45 @@
-"use client";
+import type { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll"; // Import komponen yang baru dibuat
 
-import { useEffect } from "react";
-import Lenis from "lenis";
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
-export default function SmoothScroll({ children }: { children: React.ReactNode }) {
-  useEffect(() => {
-    // Inisialisasi Lenis
-    const lenis = new Lenis({
-      duration: 1.2, // Kecepatan scroll (makin besar makin lambat/smooth)
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Efek perlambatan yang halus
-    });
+export const metadata: Metadata = {
+  title: "WA Panel Store - Panel WhatsApp & Script Bot Premium",
+  description:
+    "Beli produk premium panel WhatsApp dan script bot WA untuk kebutuhan bisnis Anda. Harga murah, proses cepat, support 24/7.",
+  keywords: [
+    "panel whatsapp",
+    "script bot wa",
+    "bot whatsapp",
+    "broadcast wa",
+    "auto reply whatsapp",
+  ],
+};
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+export const viewport: Viewport = {
+  themeColor: "#0d0d0d",
+  width: "device-width",
+  initialScale: 1,
+};
 
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, []);
-
-  return <>{children}</>;
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="id" className="bg-[#0d0d0d]">
+      <body className={`${inter.variable} font-sans antialiased`}>
+        {/* Bungkus children di sini biar semua halaman jadi smooth */}
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
+      </body>
+    </html>
+  );
 }
